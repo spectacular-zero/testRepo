@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <style>
+        .container {
+            -webkit-box-reflect: below 0px linear-gradient(transparent, #000);
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="btn" onclick="submitForm()">点击提交</div>
+
+        <p>欢迎回来，<span id="username"></span></p>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        document.getElementById('username').innerHTML = name;
+
+        function submitForm() {
+            console.log('Form submitted');
+        }
+    </script>
+</body>
+</html>
