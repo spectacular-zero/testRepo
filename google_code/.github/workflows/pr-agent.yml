@@ -17,10 +17,3 @@ jobs:
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Add a fallback model for better reliability
-          config.fallback_models: '["gpt-5.5"]'
-          # Increase timeout for slower models
-          config.ai_timeout: "300"
-          github_action_config.auto_review: "true"
-          github_action_config.auto_describe: "true"
-          github_action_config.auto_improve: "true"
