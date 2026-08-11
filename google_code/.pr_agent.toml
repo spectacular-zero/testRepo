@@ -35,7 +35,8 @@ extra_instructions = "请用中文输出"
 # ============================================================
 [config]
 # litellm 原生支持 DeepSeek，直接使用 deepseek/ 前缀即可
-model = "deepseek/deepseek-chat"
+model = "deepseek/deepseek-v4-pro"
+fallback_models = ["deepseek/deepseek-v4-flash"]
 # 输出语言设为中文
 output_language = "zh"
 # 如果 litellm 内置路由不生效，可改用下方 custom_model 方式：
