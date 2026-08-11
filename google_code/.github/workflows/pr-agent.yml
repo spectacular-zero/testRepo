@@ -1,36 +1,27 @@
 name: PR-Agent
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, reopened, ready_for_review, synchronize]
   issue_comment:
-    types: [created, edited]
-  workflow_dispatch:
+    types: [created]
 
 permissions:
-  contents: read
   issues: write
   pull-requests: write
-  checks: write
+  contents: write
 
 jobs:
-  pr_agent:
-    if: |
-      (github.event_name == 'pull_request_target' && github.event.pull_request.draft == false) ||
-      (github.event_name == 'issue_comment' && github.event.issue.pull_request) ||
-      github.event_name == 'workflow_dispatch'
+  pr_agent_job:
+    if: ${{ github.event.sender.type != 'Bot' }}
     runs-on: ubuntu-latest
-    name: Run PR-Agent
+    name: Run PR-Agent on PR events
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Run PR-Agent
-        uses: The-PR-Agent/pr-agent@v0.25  # 👈 1. 修正了组织名
+      - name: PR Agent action step
+        id: pragent
+        uses: Codium-ai/pr-agent@main
         env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          OPENAI_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }} # 👈 2. 备用映射，防止底层的 LiteLLM 报错
+          OPENAI.KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          OPENAI.API_BASE: "https://api.deepseek.com/v1"
+          CONFIG.MODEL: "deepseek/deepseek-chat"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CONFIG__IS_AUTO: "true"
