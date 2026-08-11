@@ -28,8 +28,9 @@ jobs:
           fetch-depth: 0
 
       - name: Run PR-Agent
-        uses: qodo-ai/pr-agent@v0.25
+        uses: The-PR-Agent/pr-agent@v0.25  # 👈 1. 修正了组织名
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }} # 👈 2. 备用映射，防止底层的 LiteLLM 报错
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CONFIG__IS_AUTO: "true"
