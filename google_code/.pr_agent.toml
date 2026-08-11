@@ -1,0 +1,47 @@
+# PR-Agent 配置文件（DeepSeek 适配）
+# 参考文档: https://qodo-merge-docs.qodo.ai/usage-guide/configuration_options/
+
+[pr_reviewer]
+# 审查深度: low, medium, high
+review_depth = "medium"
+# 审查评论风格: concise, detailed
+style = "concise"
+# 启用内联代码建议
+inline_code_comments = true
+# 跳过测试文件审查
+require_tests_review = false
+# 自动审查的额外指令（中文）
+extra_instructions = "请用中文输出审查意见，重点关注潜在的 bug、安全问题和性能隐患"
+
+[pr_description]
+# 描述生成风格
+style = "concise"
+# 添加 PR 类型标签 (bug, feature, docs, etc.)
+add_pr_type_labels = true
+# 用中文生成描述
+extra_instructions = "请用中文生成 PR 描述"
+
+[pr_code_suggestions]
+# 代码建议数量上限
+num_code_suggestions = 4
+# 只给出可直接提交的建议
+committable_code_suggestions = true
+
+[pr_information]
+extra_instructions = "请用中文输出"
+
+# ============================================================
+# DeepSeek 模型配置（OpenAI 兼容方式）
+# ============================================================
+[config]
+# litellm 原生支持 DeepSeek，直接使用 deepseek/ 前缀即可
+model = "deepseek/deepseek-chat"
+# 输出语言设为中文
+output_language = "zh"
+# 如果 litellm 内置路由不生效，可改用下方 custom_model 方式：
+# [config.custom_model]
+# provider = "openai"
+# model = "deepseek-chat"
+# api_base = "https://api.deepseek.com/v1"
+# api_key_env = "DEEPSEEK_API_KEY"
+# max_tokens = 8192
