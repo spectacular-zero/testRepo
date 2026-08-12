@@ -1,21 +1,31 @@
+name: PR-Agent
+
 on:
   pull_request:
     types: [opened, reopened, ready_for_review, synchronize]
   issue_comment:
 jobs:
-  pr_agent_job:
-    if: ${{ github.event.sender.type != 'Bot' }}
+  pr_agent:
+    if: |
+      (github.event_name == 'pull_request_target' && github.event.pull_request.draft == false) ||
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request) ||
+      github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       issues: write
       pull-requests: write
       contents: write
       checks: write
-    name: Run pr agent on every pull request, respond to user comments
+    name: Run PR-Agent
     steps:
-      - name: PR Agent action step
-        id: pragent
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run PR-Agent
         uses: the-pr-agent/pr-agent@main
         env:
-          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONFIG.IS_AUTO: "true"
