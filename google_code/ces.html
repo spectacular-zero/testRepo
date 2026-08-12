@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Test Page</title>
+    <!-- 1. 性能隐患：在 head 中加载了阻塞渲染的超大脚本 -->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <style>
         .container {
+            /* 2. 样式问题：使用了已废弃的 CSS 属性 */
             -webkit-box-reflect: below 0px linear-gradient(transparent, #000);
             color: #333;
         }
@@ -13,12 +15,15 @@
 </head>
 <body>
     <div class="container">
+        <!-- 3. 可访问性 & 语义化问题：用 div 模拟按钮，且无键盘事件 -->
         <div class="btn" onclick="submitForm()">点击提交</div>
 
+        <!-- 4. 安全风险：直接拼接用户输入，未做转义 -->
         <p>欢迎回来，<span id="username"></span></p>
     </div>
 
     <script>
+        // 模拟从 URL 获取参数并直接插入 DOM
         const params = new URLSearchParams(window.location.search);
         const name = params.get('name');
         document.getElementById('username').innerHTML = name;
