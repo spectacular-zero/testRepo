@@ -17,10 +17,7 @@ jobs:
         id: pragent
         uses: the-pr-agent/pr-agent@main
         env:
-          OPENAI_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          OPENAI.KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          OPENAI.API_BASE: "https://api.deepseek.com/v1"
+          CONFIG.MODEL: "deepseek/deepseek-chat"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CONFIG.IS_AUTO: "true"
-          config.model: "deepseek/deepseek-v4-pro"
-          config.fallback_models: '["deepseek/deepseek-v4-pro"]'
-          PR_CODE_SUGGESTIONS.NUM_CODE_SUGGESTIONS: 6
