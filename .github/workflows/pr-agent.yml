@@ -19,5 +19,4 @@ jobs:
         env:
           OPENAI.KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           OPENAI.API_BASE: "https://api.deepseek.com/v1"
-          CONFIG.MODEL: "deepseek/deepseek-chat"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
