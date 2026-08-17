@@ -20,5 +20,5 @@ jobs:
           OPENAI.KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           OPENAI.API_BASE: "https://api.deepseek.com/v1"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          config.model: "deepseek/deepseek-v4-pro"
-          config.fallback_models: '["deepseek/deepseek-v4-pro"]'
+          config.model: "deepseek/deepseek-chat"
+          config.fallback_models: '["deepseek/deepseek-chat"]'
