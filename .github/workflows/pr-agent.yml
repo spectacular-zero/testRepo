@@ -1,6 +1,6 @@
 on:
   pull_request:
-    types: [opened, reopened, ready_for_review]
+    types: [opened, reopened, ready_for_review, synchronize]
   issue_comment:
 jobs:
   pr_agent_job:
@@ -32,3 +32,5 @@ jobs:
           PR_DESCRIPTION__EXTRA_INSTRUCTIONS: "必须全程使用简体中文进行回复和描述，禁止夹杂任何非必要的英文术语。"
           PR_REVIEWER__EXTRA_INSTRUCTIONS: "所有的代码审查意见、缺陷分析和表格，必须100%使用简体中文输出。"
           PR_CODE_SUGGESTIONS__EXTRA_INSTRUCTIONS: "修改建议和原因分析必须使用简体中文陈述。"
+          GITHUB_ACTION_CONFIG__AUTO_REVIEW: "true"
+          GITHUB_ACTION_CONFIG__AUTO_IMPROVE: "false"
