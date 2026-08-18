@@ -24,6 +24,7 @@ jobs:
           CONFIG__MODEL: "deepseek/deepseek-chat"
           CONFIG__FALLBACK_MODELS: "['deepseek/deepseek-chat']"
 
+          CONFIG__RESPONSE_LANGUAGE: "zh-CN"
           PR_DESCRIPTION__RESPONSE_LANGUAGE: "zh-CN"
           PR_REVIEWER__RESPONSE_LANGUAGE: "zh-CN"
           PR_CODE_SUGGESTIONS__RESPONSE_LANGUAGE: "zh-CN"
