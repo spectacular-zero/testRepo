@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>总览页面</title>
+</head>
+<body>
+
+    <button onclick="handleClick()">click按钮</button>
+
+    <div id="user-comment-box"></div>
+
+    <script src="https://api.example.com/v1/config?token=sk_live_1234567890abcdef"></script>
+
+    <script>
+        const userComment = "<img src=x onerror=alert('你的Cookie被偷了！')>";
+        document.getElementById('user-comment-box').innerHTML = userComment;
+
+        const maliciousCode = "alert('eval 被滥用！')";
+        eval(maliciousCode);
+
+        function handleClick() {
+            const list = document.getElementById('my-list');
+            for (let i = 0; i < 10000; i++) {
+                const li = document.createElement('li');
+                li.textContent = `Item ${i}`;
+                list.appendChild(li);
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            const heavyCalc = document.body.scrollHeight - window.scrollY;
+            console.log('当前高度:', heavyCalc);
+        });
+
+        setInterval(() => {
+            console.log('这个定时器永远不会被清除，一直占用内存');
+        }, 1000);
+    </script>
+
+    <ul id="my-list"></ul>
+</body>
+</html>
