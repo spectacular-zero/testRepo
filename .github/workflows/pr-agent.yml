@@ -29,3 +29,6 @@ jobs:
           PR_REVIEWER__RESPONSE_LANGUAGE: "zh-CN"
           PR_CODE_SUGGESTIONS__RESPONSE_LANGUAGE: "zh-CN"
           PR_QUESTIONS__RESPONSE_LANGUAGE: "zh-CN"
+          PR_DESCRIPTION__EXTRA_INSTRUCTIONS: "必须全程使用简体中文进行回复和描述，禁止夹杂任何非必要的英文术语。"
+          PR_REVIEWER__EXTRA_INSTRUCTIONS: "所有的代码审查意见、缺陷分析和表格，必须100%使用简体中文输出。"
+          PR_CODE_SUGGESTIONS__EXTRA_INSTRUCTIONS: "修改建议和原因分析必须使用简体中文陈述。"
