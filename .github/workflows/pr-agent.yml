@@ -1,0 +1,34 @@
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+  issue_comment:
+jobs:
+  pr_agent_job:
+    if: ${{ github.event.sender.type != 'Bot' }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: write
+      checks: write
+    name: Run pr agent on every pull request, respond to user comments
+    steps:
+      - name: PR Agent action step
+        id: pragent
+        uses: the-pr-agent/pr-agent@main
+        env:
+          DEEPSEEK__KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # 直接指定官方模型
+          CONFIG__MODEL: "deepseek/deepseek-chat"
+          CONFIG__FALLBACK_MODELS: "['deepseek/deepseek-chat']"
+
+          CONFIG__RESPONSE_LANGUAGE: "zh-CN"
+          PR_DESCRIPTION__RESPONSE_LANGUAGE: "zh-CN"
+          PR_REVIEWER__RESPONSE_LANGUAGE: "zh-CN"
+          PR_CODE_SUGGESTIONS__RESPONSE_LANGUAGE: "zh-CN"
+          PR_QUESTIONS__RESPONSE_LANGUAGE: "zh-CN"
+          PR_DESCRIPTION__EXTRA_INSTRUCTIONS: "必须全程使用简体中文进行回复和描述，禁止夹杂任何非必要的英文术语。"
+          PR_REVIEWER__EXTRA_INSTRUCTIONS: "所有的代码审查意见、缺陷分析和表格，必须100%使用简体中文输出。"
+          PR_CODE_SUGGESTIONS__EXTRA_INSTRUCTIONS: "修改建议和原因分析必须使用简体中文陈述。"
