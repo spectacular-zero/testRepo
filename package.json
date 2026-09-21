@@ -1,0 +1,23 @@
+{
+  "name": "testrepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spectacular-zero/testRepo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/spectacular-zero/testRepo/issues"
+  },
+  "homepage": "https://github.com/spectacular-zero/testRepo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.2"
+  }
+}
